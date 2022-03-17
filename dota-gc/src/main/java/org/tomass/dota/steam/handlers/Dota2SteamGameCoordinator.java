@@ -84,7 +84,7 @@ public class Dota2SteamGameCoordinator extends SteamGameCoordinator {
 
     public void handleFromGC(IPacketMsg packetMsg) {
         ClientMsgProtobuf<CMsgGCClient.Builder> msg = new ClientMsgProtobuf<>(CMsgGCClient.class, packetMsg);
-        MessageCallback callback = new MessageCallback(msg.getBody());
+        MessageCallback callback = new MessageCallback(msg.getSourceJobID(), msg.getBody());
         getLogger().trace(">>handleGCMsg GC msg: " + callback.geteMsg());
         if (callback.getAppID() != this.appId) {
             return;
